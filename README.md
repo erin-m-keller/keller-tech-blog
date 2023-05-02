@@ -88,7 +88,7 @@
 
   * Install the dependencies.
   ``` node
-    cd keller-ecommerce
+    cd keller-tech-blog
     npm i
   ```
   
