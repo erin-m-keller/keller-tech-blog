@@ -28,19 +28,14 @@ Post.init(
       type: DataTypes.INTEGER, 
       allowNull: false, 
       references: {
-        model: 'author', 
-        key: 'author_id', 
+        model: 'Author', 
+        key: 'id', 
         unique: true 
       },
       validate: {
         is: /^\d+$/ 
       }
     },
-    comments: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
-      allowNull: true,
-      defaultValue: []
-    }
   },
   {
     sequelize,
