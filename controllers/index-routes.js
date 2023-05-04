@@ -1,24 +1,31 @@
 const router = require('express').Router(),
-      path = require('path');
+      path = require('path'),
+      handlebars  = require('express-handlebars');
 
-function sendFile(filePath, res) {
-  res.sendFile(path.join(__dirname, filePath));
+router.engine('handlebars', handlebars());
+router.set('view engine', 'handlebars');
+
+function renderTemplate(template, res) {
+  res.render(template, {
+    title: 'Tech Blog',
+    layout: 'layout',
+  });
 }
 
 router.get('/dashboard', function (req, res) {
-  sendFile('../public/dashboard.html', res);
+  renderTemplate('dashboard', res);
 });
 
 router.get('/login', function (req, res) {
-  sendFile('../public/login.html', res);
+  renderTemplate('login', res);
 });
 
 router.get('/logout', function (req, res) {
-  sendFile('../public/logout.html', res);
+  renderTemplate('logout', res);
 });
 
 router.get('*', function (req, res) {
-  sendFile('../public/index.html', res);
+  renderTemplate('index', res);
 });
 
 module.exports = router;
