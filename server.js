@@ -1,17 +1,17 @@
-const express = require('express');
-const routes = require('./routes');
-// Import the connection object
-const sequelize = require('./config/connection');
+// Dependencies
+const express = require('express'),
+      handlebars = require('express-handlebars'),
+      path = require('path'),
+      hbs = handlebars.create({}),
+      app = express(),
+      PORT = process.env.PORT || 3001;
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('./controllers'));
 
-app.use(routes);
-
-// Connect to the database before starting the Express.js server
-sequelize.sync().then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+app.listen(PORT, () => {
+  console.log('Server listening on: http://localhost:' + PORT);
 });
