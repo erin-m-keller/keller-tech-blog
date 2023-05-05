@@ -4,7 +4,12 @@ const express = require('express'),
       app = express(),
       PORT = process.env.PORT || 3001,
       hbs = handlebars.create({
-        defaultLayout: 'main'
+        defaultLayout: 'main',
+        helpers: {
+          isActive: function(url) {
+            return (url === this.url) ? 'active' : '';
+          }
+        }
       });
 
 hbs.handlebars.registerPartial('header', '{{header}}');

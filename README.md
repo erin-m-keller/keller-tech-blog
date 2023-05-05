@@ -103,7 +103,7 @@
 
   ## Screenshot
   
-  ![FinishedProduct](./assets/images/finished-product.png)
+  ![FinishedProduct](./public/images/finished-product.png)
   
   ## Deployed page
 

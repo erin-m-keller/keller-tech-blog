@@ -1,11 +1,14 @@
 <div class="ui pointing menu">
-  <a href="/" class="item active">
+  <div class="header item">
+    <i class="file code icon" style="visibility: visible;"></i>&nbsp;&nbsp;Tech Blog
+  </div>
+  <a href="/" class="{{isActive '/'}} item">
     Home
   </a>
-  <a href="/dashboard" class="item">
+  <a href="/dashboard" class="{{isActive '/dashboard'}} item">
     Dashboard
   </a>
-  <a href="/logout" class="item">
+  <a href="/logout" class="{{isActive '/logout'}} item">
     Logout
   </a>
 </div>
