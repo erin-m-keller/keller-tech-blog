@@ -1,12 +1,17 @@
-// Dependencies
 const express = require('express'),
       handlebars = require('express-handlebars'),
       path = require('path'),
-      hbs = handlebars.create({}),
       app = express(),
-      PORT = process.env.PORT || 3001;
+      PORT = process.env.PORT || 3001,
+      hbs = handlebars.create({
+        defaultLayout: 'main'
+      });
+
+hbs.handlebars.registerPartial('header', '{{header}}');
+hbs.handlebars.registerPartial('footer', '{{footer}}');
 
 app.engine('handlebars', hbs.engine);
+
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));

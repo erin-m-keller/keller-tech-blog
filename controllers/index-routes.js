@@ -1,9 +1,15 @@
-const router = require('express').Router();
+const router = require('express').Router(),
+      semanticJs = '/semantic/dist/semantic.min.js',
+      semanticCss = '/semantic/dist/semantic.min.css',
+      mainCss = '/index.css';
 
 function renderTemplate(template, res) {
   res.render(template, {
     title: 'Tech Blog',
     layout: 'main',
+    semanticJs: semanticJs,
+    semanticCss: semanticCss,
+    mainCss: mainCss
   });
 }
 

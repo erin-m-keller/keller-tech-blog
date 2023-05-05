@@ -22,6 +22,7 @@
 ![nodeJS](https://img.shields.io/badge/-Node.js-61DAFB?color=yellow&style=flat)
 ![sequelize](https://img.shields.io/badge/-Sequelize-61DAFB?color=green&style=flat)
 ![mySql](https://img.shields.io/badge/-MySQL-61DAFB?color=blue&style=flat)
+![fomanticUi](https://img.shields.io/badge/-FomanticUI-61DAFB?color=purple&style=flat)
 
   ## User Story
   ```md
@@ -81,6 +82,7 @@
   
   ## Installation 
   
+  * Ensure you are running Node.js v16.
   * Clone the repository.
   ```
     git clone git@github.com:erin-m-keller/keller-tech-blog.git
