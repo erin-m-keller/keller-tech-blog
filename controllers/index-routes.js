@@ -18,7 +18,11 @@ function renderTemplate(template, res, data) {
 }
 
 router.get('/dashboard', function (req, res) {
-  renderTemplate('dashboard', res, { url: req.url });
+  if (!req.session.loggedIn) {
+    res.redirect('/');
+  } else {
+    renderTemplate('dashboard', res, { url: req.url });
+  }
 });
 
 router.get('/logout', function (req, res) {
