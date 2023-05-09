@@ -1,7 +1,5 @@
 module.exports = {
-    isActive: (url) => {
-        const currentPagePath = window.location.pathname;
-        console.log(currentPagePath);
+    isActive: function(url) {
         return (url === this.url) ? 'active' : '';
     }
   };

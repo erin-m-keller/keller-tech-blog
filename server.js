@@ -8,11 +8,7 @@ const path = require('path'),
       SequelizeStore = require('connect-session-sequelize')(session.Store),
       app = express(),
       PORT = process.env.PORT || 3001,
-      hbs = exphbs.create({ helpers: {
-        isActive: function(url) {
-          return (url === this.url) ? 'active' : '';
-        }
-      } }),
+      hbs = exphbs.create({ helpers }),
       sess = {
         secret: 'Super secret secret',
         cookie: {},
