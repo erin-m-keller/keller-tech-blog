@@ -1,0 +1,52 @@
+[
+  {
+    "userName": "BinarySal",
+    "email": "sal@fakeemail.com",
+    "password": "fakepassword1"
+  },
+  {
+    "userName": "CyberLernantino",
+    "email": "lernantino@fakeemail.com",
+    "password": "fakepassword2"
+  },
+  {
+    "userName": "AmikoTech",
+    "email": "amiko@fakeemail.com",
+    "password": "fakepassword3"
+  },
+  {
+    "userName": "JordanHack",
+    "email": "jordan@fakeemail.com",
+    "password": "fakepassword4"
+  },
+  {
+    "userName": "ByteBlake",
+    "email": "blake@fakeemail.com",
+    "password": "fakepassword5"
+  },
+  {
+    "userName": "RaviCoder",
+    "email": "ravi@fakeemail.com",
+    "password": "fakepassword6"
+  },
+  {
+    "userName": "SakuraGeek",
+    "email": "sakura@fakeemail.com",
+    "password": "fakepassword7"
+  },
+  {
+    "userName": "TechMohammed",
+    "email": "mohammed@fakeemail.com",
+    "password": "fakepassword8"
+  },
+  {
+    "userName": "YunaDev",
+    "email": "yuna@fakeemail.com",
+    "password": "fakepassword9"
+  },
+  {
+    "userName": "ChenTechie",
+    "email": "chen@fakeemail.com",
+    "password": "fakepassword10"
+  }
+]

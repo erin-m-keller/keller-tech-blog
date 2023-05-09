@@ -4,21 +4,9 @@
   "description": "todo",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/seed.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/erin-m-keller/keller-tech-blog.git"
-  },
-  "keywords": [
-    "todo"
-  ],
-  "author": "Erin M Keller",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/erin-m-keller/keller-tech-blog/issues"
-  },
-  "homepage": "https://github.com/erin-m-keller/keller-tech-blog#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.6",

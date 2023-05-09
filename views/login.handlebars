@@ -13,14 +13,14 @@
           <div class="header">Login</div>
         </div>
         <div class="content">
-          <form class="ui form">
+          <form class="ui form login-form">
             <div class="field">
               <label>Email</label>
-              <input type="email" name="email" placeholder="Email" required>
+              <input id="email" type="email" name="email" placeholder="Email" required>
             </div>
             <div class="field">
               <label>Password</label>
-              <input type="password" name="password" placeholder="Password" required>
+              <input id="password" type="password" name="password" placeholder="Password" required>
             </div>
             <button class="ui button" type="submit">Login</button>
           </form>
@@ -33,20 +33,36 @@
           <div class="header">Sign Up</div>
         </div>
         <div class="content">
-          <form class="ui form">
+          <form class="ui form signup-form">
             <div class="field">
               <label>Username</label>
-              <input type="text" name="username" placeholder="Username" required>
+              <input id="signup-username" type="text" name="username" placeholder="Username" required>
             </div>
             <div class="field">
               <label>Email</label>
-              <input type="email" name="email" placeholder="Email" required>
+              <input id="signup-email" type="email" name="email" placeholder="Email" required>
             </div>
             <div class="field">
               <label>Password</label>
-              <input type="password" name="password" placeholder="Password" required>
+              <input id="signup-pass" type="password" name="password" placeholder="Password" required>
             </div>
             <button class="ui primary button" type="submit">Sign Up</button>
+
+            <div class="ui negative message hidden" id="password-length">
+              <i class="close icon"></i>
+              <div class="header">
+                Error
+              </div>
+              <p>The password must be 8 characters.</p>
+            </div>
+            <div class="ui negative message hidden" id="invalid-email">
+              <i class="close icon"></i>
+              <div class="header">
+                Error
+              </div>
+              <p>This email has already been used.</p>
+            </div>
+
           </form>
           <a href=""></a>
         </div>
@@ -54,3 +70,4 @@
     </div>
   </div>
 </div>
+<script src="/js/login.js"></script>
