@@ -67,13 +67,12 @@ const updateComments = (commentsData, postId) => {
 };
 
 const addComment = async (event, postId) => {
-  console.log("hello");
   event.preventDefault();
   const commentContent = document.querySelector('#comment-content').value;
   const userId = document.querySelector('#user-id').value;
 
   if (commentContent && userId && postId) {
-    const response = await fetch('/api/comment/addComment', {
+    const response = await fetch('/api/comment/add', {
       method: 'POST',
       body: JSON.stringify({ comment_content: commentContent, user_id: userId, post_id: postId }),
       headers: { 'Content-Type': 'application/json' },
@@ -90,6 +89,27 @@ const addComment = async (event, postId) => {
       } else {
         alert('Failed to fetch updated comments');
       }
+    } else {
+      alert(JSON.stringify(response) + ' - Failed to add a comment');
+    }
+  }
+};
+
+const addBlog = async (event) => {
+  event.preventDefault();
+  console.log("add blog");
+  const blogTitle = document.querySelector('#blog-title').value,
+        blogContent = document.querySelector('#blog-content').value,
+        userId = document.querySelector('#blog-user-id').value;
+  if (blogTitle && blogContent && userId) {
+    const response = await fetch('/api/blog/add', {
+      method: 'POST',
+      body: JSON.stringify({ post_title: blogTitle, post_content: blogContent, user_id: userId }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      // show success message
     } else {
       alert(JSON.stringify(response) + ' - Failed to add a comment');
     }

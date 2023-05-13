@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 router.get('/home', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      order: [['post_date', 'ASC']],
+      order: [['post_date', 'DESC']],
       include: [
         {
           model: Users,
@@ -35,7 +35,8 @@ router.get('/home', withAuth, async (req, res) => {
       posts,
       logged_in: req.session.logged_in,
       logged_in_id: req.session.logged_in_id,
-      url: req.url
+      url: req.url,
+      postId: req.params.postId, 
     });
   } catch (err) {
     res.status(500).json(err);
