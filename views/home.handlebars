@@ -1,5 +1,6 @@
 <div class="ui segment main-content">
   <h1>Home</h1>
+  <input type="hidden" id="user-id" name="user-id" value="{{logged_in_id}}" />
   {{#each posts as |post| }}
   <div class="row align-center mb-5">
     <div class="col-md-6">
@@ -18,13 +19,13 @@
         Hide Comments
       </h3>
     </div>
-    <div class="ui comments hide-btn hidden" id="comments-wrapper-{{post.id}}" [data-post-id="${postId}"]>
+    <div class="ui comments hide-btn hidden" id="comments-wrapper-{{post.id}}">
       {{#each post.Comments as |comment|}}
         <div class="comment">
           <div class="content">
             <a class="author">{{comment.user.user_name}}</a>
             <div class="metadata">
-              <div class="date">{{comment.comment_date}}</div>
+              <div class="date">{{formatDate comment.comment_date}}</div>
             </div>
             <div class="text">
               {{comment.comment_content}}
@@ -34,9 +35,9 @@
       {{/each}}
       <form class="ui reply form">
         <div class="field">
-          <textarea></textarea>
+          <textarea id="comment-content" required></textarea>
         </div>
-        <div class="ui primary submit labeled icon button">
+        <div class="ui primary submit labeled icon button" onclick="addComment(event,{{post.id}})">
           <i class="icon edit"></i> Add Reply
         </div>
       </form>

@@ -30,13 +30,12 @@ router.get('/home', withAuth, async (req, res) => {
         },
       ],
     });
-    console.log("postData: " + JSON.stringify(postData))
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(JSON.stringify(posts))
     res.render('home', {
       posts,
       logged_in: req.session.logged_in,
-      url: req.url,
+      logged_in_id: req.session.logged_in_id,
+      url: req.url
     });
   } catch (err) {
     res.status(500).json(err);
