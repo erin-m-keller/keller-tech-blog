@@ -49,6 +49,13 @@
     font-family: var(--font-main);
 }
 
+.email-err,
+.password-err,
+.invalid-email-err,
+.password-length-err {
+    margin: 1em 0 !important;
+}
+
 @media screen and (min-width: 768px) {
     .hero h1 {
         width: 70%;

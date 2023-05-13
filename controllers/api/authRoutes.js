@@ -21,14 +21,14 @@ router.post('/create', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await Users.findOne({ where: { email: req.body.email } }),
-          validPassword = await userData.checkPassword(req.body.password);
+    const userData = await Users.findOne({ where: { email: req.body.email } });
     if (!userData) {
-      res.status(400).json({ message: 'Email is not registered. Please sign-up.' });
+      res.status(400).json({ error: 'Email is not registered. Please sign up.' });
       return;
     }
+    const validPassword = await userData.checkPassword(req.body.password);
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password.' });
+      res.status(400).json({ error: 'Incorrect password.' });
       return;
     }
     req.session.save(() => {
@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
       res.json({ user: userData, message: 'You are now logged in.' });
     });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ error: 'An error occurred while processing your request.', msg: err });
   }
 });
 
