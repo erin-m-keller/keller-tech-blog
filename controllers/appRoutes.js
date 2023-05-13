@@ -1,16 +1,11 @@
 const router = require('express').Router(),
-      { Users, Post, Comment } = require('../models'),
-      withAuth = require('../utils/auth');
+      { Users, Post, Comment } = require('../models');
 
-router.get('/', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/home');
-    return;
-  }
+router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/home', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
       order: [['post_date', 'DESC']],
@@ -43,7 +38,7 @@ router.get('/home', withAuth, async (req, res) => {
   }
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard', async (req, res) => {
   try {
     const userData = await Users.findAll({
       attributes: { exclude: ['password'] },

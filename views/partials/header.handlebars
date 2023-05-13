@@ -2,18 +2,18 @@
   <div class="header item">
     <i class="file code icon" style="visibility: visible;"></i>&nbsp;&nbsp;Tech Blog
   </div>
+  <a href="/" class="{{isActive '/'}} item">
+    Home
+  </a>
+  <a href="/dashboard" class="{{isActive '/dashboard'}} item">
+    Dashboard
+  </a>
   {{#if logged_in}}
-    <a href="/home" class="{{isActive '/home'}} item">
-      Home
-    </a>
-    <a href="/dashboard" class="{{isActive '/dashboard'}} item">
-      Dashboard
-    </a>
     <a href="javascript:void(0)" id="logout" class="{{isActive '/logout'}} item">
       Logout
     </a>
   {{else}}
-    <a href="/" class="item">
+    <a href="/login" class="item">
       Login
     </a>
   {{/if}}

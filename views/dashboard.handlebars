@@ -2,19 +2,34 @@
   <h1>Dashboard</h1>
   <input type="hidden" id="blog-user-id" name="user-id" value="{{logged_in_id}}" />
   <div class="ui form">
-    <div class="field">
-      <label>Blog Title:</label>
-      <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title">
-    </div>
-    <div class="field">
-      <label>Enter your blog details:</label>
-      <textarea id="blog-content"></textarea>
-    </div>
-    <button class="ui primary button" onclick="addBlog(event)">
-      Save
-    </button>
-    <button class="ui button">
-      Discard
-    </button>
+    {{#if logged_in}}
+      <div class="field">
+        <label>Blog Title:</label>
+        <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title">
+      </div>
+      <div class="field">
+        <label>Enter your blog details:</label>
+        <textarea id="blog-content"></textarea>
+      </div>
+      <button class="ui primary button" onclick="addBlog(event)">
+        Save
+      </button>
+      <button class="ui button">
+        Discard
+      </button>
+    {{else}}
+      <div class="field">
+        <label>Blog Title:</label>
+        <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title" disabled>
+      </div>
+      <div class="field">
+        <label>Enter your blog details:</label>
+        <textarea id="blog-content" disabled></textarea>
+      </div>
+      <p>You must be logged in to post.</p>
+      <a href="/login" class="ui primary button">
+        Login
+      </a>
+    {{/if}}
   </div>
 </div>
