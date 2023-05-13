@@ -10,7 +10,7 @@ router.post('/add', async (req, res) => {
         user_id: req.body.user_id
     });
     const foundBlog = await Post.findByPk(newBlog.id);
-    res.json({ blog: foundBlog, message: 'Blog added successfully.' });
+    res.json({ blog: foundBlog, message: 'Post added successfully.' });
   } catch (err) {
     res.status(400).json(err);
   }

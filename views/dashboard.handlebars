@@ -1,35 +1,45 @@
 <div class="main-content">
-  <h1>Dashboard</h1>
-  <input type="hidden" id="blog-user-id" name="user-id" value="{{logged_in_id}}" />
-  <div class="ui form">
-    {{#if logged_in}}
-      <div class="field">
-        <label>Blog Title:</label>
-        <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title">
+  <div class="hero">
+    <h1>Craft Your Tech Journey with Every Blog</h1>
+  </div>
+  <div class="ui card">
+    <div class="content">
+      <input type="hidden" id="blog-user-id" name="user-id" value="{{logged_in_id}}" />
+      <div class="ui form">
+        {{#if logged_in}}
+          <div class="field">
+            <label>Blog Title:</label>
+            <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title">
+          </div>
+          <div class="field">
+            <label>Enter your blog details:</label>
+            <textarea id="blog-content"></textarea>
+          </div>
+          <button class="ui primary button" onclick="addBlog(event)">
+            Save
+          </button>
+          <button class="ui button" onclick="clearPost(event)">
+            Discard
+          </button>
+        {{else}}
+          <div class="field">
+            <label>Blog Title:</label>
+            <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title" disabled>
+          </div>
+          <div class="field">
+            <label>Enter your blog details:</label>
+            <textarea id="blog-content" disabled></textarea>
+          </div>
+          <p>You must be logged in to post.</p>
+          <a href="/login" class="ui primary button">
+            Login
+          </a>
+        {{/if}}
       </div>
-      <div class="field">
-        <label>Enter your blog details:</label>
-        <textarea id="blog-content"></textarea>
+      <div class="ui green label hidden success-msg">
+        <a href="javascript:void(0)" onclick="closeSuccess()"><i class="times icon"></i></a>
+        Post submitted successfully. Check the top of the <a href="/">homepage</a> for your recent submission!
       </div>
-      <button class="ui primary button" onclick="addBlog(event)">
-        Save
-      </button>
-      <button class="ui button" onclick="clearPost(event)">
-        Discard
-      </button>
-    {{else}}
-      <div class="field">
-        <label>Blog Title:</label>
-        <input type="text" id="blog-title" name="blog-title" placeholder="Enter the title" disabled>
-      </div>
-      <div class="field">
-        <label>Enter your blog details:</label>
-        <textarea id="blog-content" disabled></textarea>
-      </div>
-      <p>You must be logged in to post.</p>
-      <a href="/login" class="ui primary button">
-        Login
-      </a>
-    {{/if}}
+    </div>
   </div>
 </div>

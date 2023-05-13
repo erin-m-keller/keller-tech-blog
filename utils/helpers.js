@@ -8,7 +8,6 @@ module.exports = {
         return JSON.stringify(context);
     },
     formatDate: function(date) {
-        return moment(date).format('YYYY-MM-DD h:mm:ss A');
+        return moment(date).format('MMMM Do YYYY, h:mm a');
     }
-  };
-  
+};

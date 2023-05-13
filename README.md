@@ -103,7 +103,9 @@
 
   ## Screenshot
   
-  ![FinishedProduct](./public/images/finished-product.png)
+  ![FinishedProduct1](./public/images/finished-product-1.png)
+  ![FinishedProduct2](./public/images/finished-product-2.png)
+  ![FinishedProduct3](./public/images/finished-product-3.png)
   
   ## Deployed page
 

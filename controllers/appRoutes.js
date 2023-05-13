@@ -2,7 +2,9 @@ const router = require('express').Router(),
       { Users, Post, Comment } = require('../models');
 
 router.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {
+    url: req.url
+  });
 });
 
 router.get('/', async (req, res) => {
@@ -49,6 +51,7 @@ router.get('/dashboard', async (req, res) => {
     res.render('dashboard', {
       users,
       logged_in: req.session.logged_in,
+      logged_in_id: req.session.logged_in_id,
       url: req.url 
     });
   } catch (err) {

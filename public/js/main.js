@@ -34,7 +34,9 @@ function toggleTab(event) {
   });
 }
 
-function toggleComments(element,postId) {
+function toggleComments(event,element,postId) {
+  //event.stopPropogation();
+
   const showBtn = element.querySelector('.show-btn'),
         hideBtn = element.querySelector('.hide-btn'),
         commentsWrapper = document.getElementById("comments-wrapper-" + postId);
@@ -45,7 +47,15 @@ function toggleComments(element,postId) {
 }
 
 const updateComments = (commentsData, postId) => {
-  const commentsWrapper = document.querySelector(`#comments-wrapper-${postId}`);
+  const commentsWrapper = document.querySelector(`#comments-wrapper-${postId}`),
+        commentsLength = document.querySelector(`.comments-length`),
+        lengthDiv = document.createElement('div');
+  commentsLength.innerHTML = '';
+  lengthDiv.className = 'content comments-length';
+  lengthDiv.innerHTML = `
+    <i class="comment icon"></i>
+    ${commentsData.length} comments
+  `;
   commentsWrapper.innerHTML = '';
 
   commentsData.forEach((comment) => {
@@ -61,6 +71,7 @@ const updateComments = (commentsData, postId) => {
         <div class="text">${comment.comment_content}</div>
       </div>
     `;
+    commentsLength.appendChild(lengthDiv);
     commentsWrapper.appendChild(commentElement);
   });
   const formElement = document.createElement('div');
@@ -108,7 +119,6 @@ const addComment = async (event, postId) => {
 
 const addBlog = async (event) => {
   event.preventDefault();
-  console.log("add blog");
   const blogTitle = document.querySelector('#blog-title').value,
         blogContent = document.querySelector('#blog-content').value,
         userId = document.querySelector('#blog-user-id').value;
@@ -120,9 +130,18 @@ const addBlog = async (event) => {
     });
 
     if (response.ok) {
-      // show success message
+      const success = await response.json();
+      if (success.message === 'Post added successfully.') {
+        var successMsg = document.querySelector('.success-msg');
+        successMsg.classList.remove('hidden');
+      }
     } else {
-      alert(JSON.stringify(response) + ' - Failed to add a comment');
+      alert(JSON.stringify(response) + ' - Failed to add a post');
     }
   }
+};
+
+const closeSuccess = () => {
+  var successMsg = document.querySelector('.success-msg');
+  successMsg.classList.add('hidden');
 };

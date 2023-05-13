@@ -3,6 +3,10 @@
     --font-styled: "Caveat", sans-serif;
 }
 
+body {
+    background-color: #f2f2f2 !important;
+}
+
 .hidden {
     display: none;
 }
@@ -33,7 +37,6 @@
     width: 100%;
     background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(100,43,115,1) 0%, rgba(4,0,4,1) 90% );
     color: #FFF;
-    margin-bottom: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,11 +52,48 @@
     font-family: var(--font-main);
 }
 
+.login-wrapper {
+    padding: 4em 0;
+}
+
 .email-err,
 .password-err,
 .invalid-email-err,
-.password-length-err {
+.password-length-err,
+.success-msg {
     margin: 1em 0 !important;
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
+.ui.ui.secondary.inverted.pointing.menu .active.item {
+    border-color: #6CC551 !important;
+}
+
+.ui.card {
+    width: 90% !important;
+    margin: 1em auto !important;
+}
+
+.show-btn,
+.hide-btn {
+    margin: 0 !important;
+}
+
+.show-hide {
+    background-color: #582665 !important;
+    color: #fff;
+}
+
+.main-title {
+    background-color: #6CC551 !important;
+    color: #191919;
+}
+
+.ui.card .meta, .ui.cards>.card .meta {
+    color: #191919 !important;
 }
 
 @media screen and (min-width: 768px) {
