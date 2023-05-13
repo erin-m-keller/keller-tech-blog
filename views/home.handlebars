@@ -8,7 +8,7 @@
       <p>{{user.user_name}} &mdash; {{user.email}}</p>
       <p>{{post.post_content}}</p>
     </div>
-    <div class="comment-btn-wrapper" onclick="toggleComments(this)">
+    <div class="comment-btn-wrapper" onclick="toggleComments(this,{{post.id}})">
       <h3 class="ui dividing header show-btn">
         <i class="caret square down outline icon" style="visibility: visible;"></i>
         Show Comments
@@ -18,11 +18,11 @@
         Hide Comments
       </h3>
     </div>
-    <div class="ui comments hide-btn hidden" id="comments-wrapper">
+    <div class="ui comments hide-btn hidden" id="comments-wrapper-{{post.id}}" [data-post-id="${postId}"]>
       {{#each post.Comments as |comment|}}
         <div class="comment">
           <div class="content">
-            <a class="author">{{comment.User.user_name}}</a>
+            <a class="author">{{comment.user.user_name}}</a>
             <div class="metadata">
               <div class="date">{{comment.comment_date}}</div>
             </div>

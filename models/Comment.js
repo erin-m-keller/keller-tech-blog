@@ -26,7 +26,6 @@ Comment.init(
         references: {
             model: 'Users', 
             key: 'id', 
-            unique: true ,
             onDelete: 'CASCADE'
         },
         validate: {
@@ -39,7 +38,6 @@ Comment.init(
         references: {
             model: 'Post',
             key: 'id', 
-            unique: true ,
             onDelete: 'CASCADE'
         }
     }

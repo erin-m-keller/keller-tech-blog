@@ -30,6 +30,7 @@ router.get('/home', withAuth, async (req, res) => {
         },
       ],
     });
+    console.log("postData: " + JSON.stringify(postData))
     const posts = postData.map((post) => post.get({ plain: true }));
     console.log(JSON.stringify(posts))
     res.render('home', {

@@ -23,15 +23,12 @@ function toggleTab(event) {
   });
 }
 
-function toggleComments(element) {
-
-  console.log(element);
-
+function toggleComments(element,postId) {
   const showBtn = element.querySelector('.show-btn'),
         hideBtn = element.querySelector('.hide-btn'),
-        commentsWrapper = document.getElementById("comments-wrapper");
+        commentsWrapper = document.getElementById("comments-wrapper-" + postId);
   
   showBtn.classList.toggle('hidden');
   hideBtn.classList.toggle('hidden');
-  commentsWrapper.classList.toggle("hidden");
+  commentsWrapper.classList.toggle('hidden');
 }
