@@ -5,7 +5,7 @@ class Comment extends Model {}
 
 Comment.init(
   {
-    comment_id: {
+    id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -15,13 +15,19 @@ Comment.init(
         type: DataTypes.TEXT,
         allowNull: false,
     },
+    comment_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
     user_id: { 
         type: DataTypes.INTEGER, 
         allowNull: false, 
         references: {
-            model: 'User', 
+            model: 'Users', 
             key: 'id', 
-            unique: true 
+            unique: true ,
+            onDelete: 'CASCADE'
         },
         validate: {
             is: /^\d+$/ 
@@ -33,7 +39,8 @@ Comment.init(
         references: {
             model: 'Post',
             key: 'id', 
-            unique: true 
+            unique: true ,
+            onDelete: 'CASCADE'
         }
     }
   },

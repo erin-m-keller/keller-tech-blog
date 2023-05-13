@@ -21,10 +21,13 @@ const signupFormHandler = async (event) => {
   const username = document.querySelector('#signup-username').value.trim(),
         email = document.querySelector('#signup-email').value.trim(),
         password = document.querySelector('#signup-pass').value.trim();
+  console.log("username: " + username);
+  console.log("email: " + email);
+  console.log("password: " + password);
   if (email && password && username) {
     const response = await fetch('/api/auth/create', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ user_name: username, email: email, password: password }),
       headers: { 'Content-Type': 'application/json' },
     });
     console.log("response.ok: " + response.ok);

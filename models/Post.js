@@ -28,9 +28,10 @@ Post.init(
       type: DataTypes.INTEGER, 
       allowNull: false, 
       references: {
-        model: 'User', 
+        model: 'Users', 
         key: 'id', 
-        unique: true 
+        unique: true,
+        onDelete: 'CASCADE'
       },
       validate: {
         is: /^\d+$/ 

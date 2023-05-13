@@ -1,12 +1,52 @@
 const router = require('express').Router(),
-      { User } = require('../models'),
+      { Users, Post, Comment } = require('../models'),
       withAuth = require('../utils/auth');
+
+router.get('/', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/home');
+    return;
+  }
+  res.render('login');
+});
+
+router.get('/home', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      order: [['post_date', 'ASC']],
+      include: [
+        {
+          model: Users,
+          attributes: ['user_name', 'email'],
+        },
+        {
+          model: Comment,
+          include: [
+            {
+              model: Users,
+              attributes: ['user_name', 'email'],
+            },
+          ],
+        },
+      ],
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+    console.log(JSON.stringify(posts))
+    res.render('home', {
+      posts,
+      logged_in: req.session.logged_in,
+      url: req.url,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
+    const userData = await Users.findAll({
       attributes: { exclude: ['password'] },
-      order: [['userName', 'ASC']],
+      order: [['user_name', 'ASC']],
     });
 
     const users = userData.map((project) => project.get({ plain: true }));
@@ -18,14 +58,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-});
-
-router.get('/', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-  res.render('login');
 });
 
 module.exports = router;

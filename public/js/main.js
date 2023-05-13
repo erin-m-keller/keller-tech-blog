@@ -22,3 +22,16 @@ function toggleTab(event) {
     }
   });
 }
+
+function toggleComments(element) {
+
+  console.log(element);
+
+  const showBtn = element.querySelector('.show-btn'),
+        hideBtn = element.querySelector('.hide-btn'),
+        commentsWrapper = document.getElementById("comments-wrapper");
+  
+  showBtn.classList.toggle('hidden');
+  hideBtn.classList.toggle('hidden');
+  commentsWrapper.classList.toggle("hidden");
+}

@@ -3,6 +3,9 @@
     <i class="file code icon" style="visibility: visible;"></i>&nbsp;&nbsp;Tech Blog
   </div>
   {{#if logged_in}}
+    <a href="/home" class="{{isActive '/home'}} item">
+      Home
+    </a>
     <a href="/dashboard" class="{{isActive '/dashboard'}} item">
       Dashboard
     </a>
@@ -10,9 +13,6 @@
       Logout
     </a>
   {{else}}
-    <a href="javascript:void(0)" class="active item">
-      Home
-    </a>
     <a href="/" class="item">
       Login
     </a>

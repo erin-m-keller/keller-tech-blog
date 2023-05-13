@@ -117,7 +117,7 @@
 
   ## Outside Resources
   
-  * [ChatGPT](https://openai.com/blog/chatgpt): Used ChatGPT to generate the regex used within the validate functions.
+  * [ChatGPT](https://openai.com/blog/chatgpt): Used ChatGPT to generate the seed data in the application.
   
   ## Questions
   If you have any questions about this project, please contact me directly at [aestheticartist@gmail.com](aestheticartist@gmail.com).  

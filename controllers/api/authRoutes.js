@@ -1,13 +1,13 @@
 const router = require('express').Router(),
-      { User } = require('../../models');
+      { Users } = require('../../models');
 router.post('/create', async (req, res) => {
   try {
-    const newUser = await User.create({
-      userName: req.body.username,
+    const newUser = await Users.create({
+      user_name: req.body.user_name,
       email: req.body.email,
       password: req.body.password
     }),
-    userData = await User.findOne({ where: { email: newUser.email } });
+    userData = await Users.findOne({ where: { email: newUser.email } });
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -19,7 +19,7 @@ router.post('/create', async (req, res) => {
 });
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } }),
+    const userData = await Users.findOne({ where: { email: req.body.email } }),
           validPassword = await userData.checkPassword(req.body.password);
     if (!userData) {
       res.status(400).json({ message: 'Email is not registered. Please sign-up.' });
