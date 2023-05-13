@@ -1,3 +1,14 @@
+function clearPost(event) {
+  event.preventDefault();
+
+  const title = document.querySelector('#blog-title'),
+        content = document.querySelector('#blog-content');
+  title.value = '';
+  content.value = '';
+  title.focus();
+}
+
+
 function toggleTab(event) {
   event.preventDefault();
   
