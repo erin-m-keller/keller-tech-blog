@@ -7,8 +7,12 @@ CREATE DATABASE techblog_db;
 -- Use the database
 USE techblog_db;
 
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS comment;
+
 -- Create the user table
-CREATE TABLE users (
+CREATE TABLE Users (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
@@ -16,7 +20,7 @@ CREATE TABLE users (
 );
 
 -- Create the post table
-CREATE TABLE post (
+CREATE TABLE Post (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   post_title VARCHAR(255) NOT NULL,
   post_content TEXT NOT NULL,
@@ -26,7 +30,7 @@ CREATE TABLE post (
 );
 
 -- Create the comment table
-CREATE TABLE comment (
+CREATE TABLE Comment (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   comment_content TEXT NOT NULL,
   comment_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
