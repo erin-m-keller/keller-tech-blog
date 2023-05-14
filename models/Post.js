@@ -24,18 +24,23 @@ Post.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    user_id: { 
-      type: DataTypes.INTEGER, 
-      allowNull: false, 
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
-        model: 'Users', 
-        key: 'id', 
+        model: 'Users',
+        key: 'id',
         unique: true,
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       },
       validate: {
-        is: /^\d+$/ 
-      }
+        is: /^\d+$/,
+      },
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
@@ -43,6 +48,7 @@ Post.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'Post',
+    updatedAt: 'updated_at', 
   }
 );
 
