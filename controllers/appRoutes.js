@@ -1,12 +1,6 @@
 const router = require('express').Router(),
       { Users, Post, Comment } = require('../models');
 
-router.get('/login', (req, res) => {
-  res.render('login', {
-    url: req.url
-  });
-});
-
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -57,6 +51,53 @@ router.get('/dashboard', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/posts/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    // Retrieve the post by ID from the database
+    const postData = await Post.findByPk(postId, {
+      include: [
+        {
+          model: Users,
+          attributes: ['user_name', 'email'],
+        },
+        {
+          model: Comment,
+          include: [
+            {
+              model: Users,
+              attributes: ['user_name', 'email'],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!postData) {
+      // If the post is not found, return an error or redirect to an error page
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Pass the post data to the template for rendering
+    const post = postData.get({ plain: true });
+    res.render('post', {
+      post,
+      logged_in: req.session.logged_in,
+      logged_in_id: req.session.logged_in_id,
+      url: req.url
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/login', (req, res) => {
+  res.render('login', {
+    url: req.url
+  });
 });
 
 module.exports = router;
