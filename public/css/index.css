@@ -60,7 +60,9 @@ body {
 .password-err,
 .invalid-email-err,
 .password-length-err,
-.success-msg {
+.success-msg,
+.details-err,
+.title-err {
     margin: 1em 0 !important;
 }
 

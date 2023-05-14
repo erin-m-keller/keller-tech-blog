@@ -138,10 +138,28 @@ const addBlog = async (event) => {
     } else {
       alert(JSON.stringify(response) + ' - Failed to add a post');
     }
+  } else {      
+    const titleErr = document.querySelector('.title-err'),
+          detailsErr = document.querySelector('.details-err');
+    if (!blogTitle) {
+      titleErr.classList.remove('hidden');
+    }
+    if (!blogContent) {
+      detailsErr.classList.remove('hidden');
+    }
   }
 };
 
-const closeSuccess = () => {
-  var successMsg = document.querySelector('.success-msg');
-  successMsg.classList.add('hidden');
+const closeMsg = (val) => {
+  const successMsg = document.querySelector('.success-msg');
+      titleErr = document.querySelector('.title-err'),
+      detailsErr = document.querySelector('.details-err');
+
+  if (val === 'title') {
+    titleErr.classList.add('hidden');
+  } else if (val === 'details') {
+    detailsErr.classList.add('hidden');
+  } else if (val === 'success') {
+    successMsg.classList.add('hidden');
+  } 
 };
