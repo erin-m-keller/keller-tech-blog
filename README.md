@@ -89,12 +89,39 @@
   ```
 
   * Install the dependencies.
+    * Install [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/)
   ``` node
     cd keller-tech-blog
     npm i
   ```
-  
 
+  Start the MySQL server in the terminal
+
+  ``` bash
+    - mysql -u root -p 
+  ```
+
+  Enter the password
+  ``` bash
+    password_goes_here
+  ```
+
+  Once MySQL server has started, create the database
+
+  ``` bash
+    SOURCE db/schema.sql 
+  ```
+
+    Exit the MySQL server
+  ``` bash
+    exit OR quit
+  ```
+
+  Seed the database with data
+  ``` bash
+    npm run seed
+  ```
+  
   * Start the application
   ``` node
     npm start
