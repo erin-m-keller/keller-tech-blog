@@ -37,6 +37,11 @@ Post.init(
         is: /^\d+$/,
       },
     },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
     updated_at: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -48,7 +53,8 @@ Post.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'Post',
-    updatedAt: 'updated_at', 
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
   }
 );
 
