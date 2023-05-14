@@ -1,51 +1,52 @@
 <div class="main-content">
   <div class="hero">
     <h1>Explore the Latest Tech Blogs<br />for a Digital Frontier</h1>
+          <p>0 {{logged_in}}</p>
   </div>
   <input type="hidden" id="user-id" name="user-id" value="{{logged_in_id}}" />
-  {{#each posts as |post| }}
-    <div class="ui card">
-      <div class="content main-title">
-        <div class="right floated meta">{{formatDate post.post_date}}</div>
-        <h2>{{post.post_title}}</h2>
-      </div>
-      <div class="content">
-        <p><strong>Posted by:</strong>&nbsp;<a href="mailto:{{user.email}}">{{user.user_name}}</a></p>
-        <p>{{post.post_content}}</p>
-      </div>
-      <div class="content comments-length">
-        <i class="comment icon"></i>
-        {{post.Comments.length}} comments
-      </div>
-      <div class="content show-hide">
-        <div class="row align-center mb-5">
-          <div class="comment-btn-wrapper" onclick="toggleComments(this,{{post.id}})">
-            <h3 class="ui show-btn">
-              <i class="caret square down outline icon" style="visibility: visible;"></i>
-              Show Comments
-            </h3>
-            <h3 class="ui hide-btn hidden">
-              <i class="caret square up outline icon" style="visibility: visible;"></i>
-              Hide Comments
-            </h3>
-          </div>
+  {{#if logged_in}}
+    {{#each posts as |post| }}
+      <div class="ui card">
+        <div class="content main-title">
+          <div class="right floated meta">{{formatDate post.post_date}}</div>
+          <h2>{{post.post_title}}</h2>
         </div>
-      </div>
-      <div class="content ui comments hide-btn hidden" id="comments-wrapper-{{post.id}}">
-        {{#each post.Comments as |comment|}}
-          <div class="comment">
-            <div class="content">
-              <a class="author">{{comment.user.user_name}}</a>
-              <div class="metadata">
-                <div class="date">{{formatDate comment.comment_date}}</div>
-              </div>
-              <div class="text">
-                {{comment.comment_content}}
-              </div>
+        <div class="content">
+          <p><strong>Posted by:</strong>&nbsp;<a href="mailto:{{user.email}}">{{user.user_name}}</a></p>
+          <p>{{post.post_content}}</p>
+        </div>
+        <div class="content comments-length">
+          <i class="comment icon"></i>
+          {{post.Comments.length}} comments
+        </div>
+        <div class="content show-hide">
+          <div class="row align-center mb-5">
+            <div class="comment-btn-wrapper" onclick="toggleComments(this,{{post.id}})">
+              <h3 class="ui show-btn">
+                <i class="caret square down outline icon" style="visibility: visible;"></i>
+                Show Comments
+              </h3>
+              <h3 class="ui hide-btn hidden">
+                <i class="caret square up outline icon" style="visibility: visible;"></i>
+                Hide Comments
+              </h3>
             </div>
           </div>
-        {{/each}}
-        {{#if logged_in}}
+        </div>
+        <div class="content ui comments hide-btn hidden" id="comments-wrapper-{{post.id}}">
+          {{#each post.Comments as |comment|}}
+            <div class="comment">
+              <div class="content">
+                <a class="author">{{comment.user.user_name}}</a>
+                <div class="metadata">
+                  <div class="date">{{formatDate comment.comment_date}}</div>
+                </div>
+                <div class="text">
+                  {{comment.comment_content}}
+                </div>
+              </div>
+            </div>
+          {{/each}}
           <form class="ui reply form">
             <div class="field">
               <textarea id="comment-content" required></textarea>
@@ -54,7 +55,52 @@
               <i class="icon edit"></i> Add Reply
             </div>
           </form>
-        {{else}}
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    {{#each posts as |post| }}
+      <div class="ui card">
+        <div class="content main-title">
+          <div class="right floated meta">{{formatDate post.post_date}}</div>
+          <h2>{{post.post_title}}</h2>
+        </div>
+        <div class="content">
+          <p><strong>Posted by:</strong>&nbsp;<a href="mailto:{{user.email}}">{{user.user_name}}</a></p>
+          <p>{{post.post_content}}</p>
+        </div>
+        <div class="content comments-length">
+          <i class="comment icon"></i>
+          {{post.Comments.length}} comments
+        </div>
+        <div class="content show-hide">
+          <div class="row align-center mb-5">
+            <div class="comment-btn-wrapper" onclick="toggleComments(this,{{post.id}})">
+              <h3 class="ui show-btn">
+                <i class="caret square down outline icon" style="visibility: visible;"></i>
+                Show Comments
+              </h3>
+              <h3 class="ui hide-btn hidden">
+                <i class="caret square up outline icon" style="visibility: visible;"></i>
+                Hide Comments
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="content ui comments hide-btn hidden" id="comments-wrapper-{{post.id}}">
+          {{#each post.Comments as |comment|}}
+            <div class="comment">
+              <div class="content">
+                <a class="author">{{comment.user.user_name}}</a>
+                <div class="metadata">
+                  <div class="date">{{formatDate comment.comment_date}}</div>
+                </div>
+                <div class="text">
+                  {{comment.comment_content}}
+                </div>
+              </div>
+            </div>
+          {{/each}}
           <form class="ui reply form">
             <div class="field">
               <textarea id="comment-content" disabled></textarea>
@@ -64,9 +110,9 @@
               Login
             </a>
           </form>
-        {{/if}}
+        </div>
       </div>
-    </div>
-  {{/each}}
+    {{/each}}
+  {{/if}}
   </div>
 </div>
