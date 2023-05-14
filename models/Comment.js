@@ -40,13 +40,25 @@ Comment.init(
             key: 'id', 
             onDelete: 'CASCADE'
         }
-    }
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
     modelName: 'Comment',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
   }
 );
 
