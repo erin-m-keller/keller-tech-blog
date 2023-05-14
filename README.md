@@ -95,35 +95,40 @@
     npm i
   ```
 
-  Start the MySQL server in the terminal
-
+  * Start the MySQL server in the terminal
   ``` bash
     - mysql -u root -p 
   ```
 
-  Enter the password
+  * Enter the password
   ``` bash
     password_goes_here
   ```
 
-  Once MySQL server has started, create the database
-
+  * Once MySQL server has started, create the database
   ``` bash
     SOURCE db/schema.sql 
   ```
 
-    Exit the MySQL server
+  * Exit the MySQL server
   ``` bash
     exit OR quit
   ```
 
-  Seed the database with data
+  * Seed the database with data
   ``` bash
     npm run seed
   ```
-  
+
+  * Create an .env file in the root directory and set your local MySQL server username and password
+  > Don't worry, it will only be saved to your local machine. The .env file is in .gitignore
+  ``` bash
+    DB_NAME='your_database_name_here'
+    DB_USER='your_username_here'
+    DB_PW='your_password_here'
+  ```
   * Start the application
-  ``` node
+   ``` bash
     npm start
   ```
   > Application available at localhost:3001
