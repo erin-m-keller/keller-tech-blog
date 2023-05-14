@@ -46,6 +46,7 @@ function toggleComments(element,postId) {
 }
 
 const updateComments = (commentsData, postId) => {
+  console.log("2 hi");
   const commentsWrapper = document.querySelector(`#comments-wrapper-${postId}`),
         commentsLength = document.querySelector(`.comments-length`),
         lengthDiv = document.createElement('div');
@@ -59,7 +60,9 @@ const updateComments = (commentsData, postId) => {
 
   commentsData.forEach((comment) => {
     const commentElement = document.createElement('div'),
-          formattedDate = moment(comment.comment_date).format('YYYY-MM-DD h:mm:ss A');
+          formattedDate = moment(comment.comment_date).format('MMMM Do YYYY, h:mm a');
+    console.log(comment.comment_date);
+    console.log(formattedDate);
     commentElement.className = 'comment';
     commentElement.innerHTML = `
       <div class="content">
@@ -88,6 +91,7 @@ const updateComments = (commentsData, postId) => {
 };
 
 const addComment = async (event, postId) => {
+  console.log("1 hi");
   event.preventDefault();
   const commentContent = document.querySelector('#comment-content').value;
   const userId = document.querySelector('#user-id').value;
