@@ -34,8 +34,7 @@ function toggleTab(event) {
   });
 }
 
-function toggleComments(event,element,postId) {
-  //event.stopPropogation();
+function toggleComments(element,postId) {
 
   const showBtn = element.querySelector('.show-btn'),
         hideBtn = element.querySelector('.hide-btn'),
@@ -134,6 +133,7 @@ const addBlog = async (event) => {
       if (success.message === 'Post added successfully.') {
         var successMsg = document.querySelector('.success-msg');
         successMsg.classList.remove('hidden');
+        clearPost(event);
       }
     } else {
       alert(JSON.stringify(response) + ' - Failed to add a post');

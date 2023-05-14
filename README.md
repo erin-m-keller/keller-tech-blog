@@ -1,7 +1,7 @@
   # Tech Blog
   
   ## Description 
-  // TODO: add description
+  A CMS-style blog site where users can create a new account, authenticate, view blog posts, create blog posts and comment on blog posts.
   
   ## Table of Contents
   * [Technology Stack](#technology-stack)
@@ -109,7 +109,7 @@
   
   ## Deployed page
 
-  // TODO: add heroku link
+  [View Published Page](https://keller-tech-blog.herokuapp.com/)
   
   ## License 
   [![MIT license](https://img.shields.io/badge/License-MIT-purple.svg)](https://lbesson.mit-license.org/)
