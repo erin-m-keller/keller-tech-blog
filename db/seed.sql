@@ -1,4 +1,4 @@
--- Insert data into tables
+-- insert data into users table
 INSERT INTO Users (user_name,email,password)
 VALUES
   ('BinarySal', 'sal@fakeemail.com', 'fakepassword1'),
@@ -12,7 +12,7 @@ VALUES
   ('YunaDev', 'yuna@fakeemail.com', 'fakepassword9'),
   ('ChenTechie', 'chen@fakeemail.com', 'fakepassword10');
 
--- Insert data into the Post table
+-- insert data into the post table
 INSERT INTO Post (post_title,post_content,post_date,user_id)
 VALUES
     ('The Future of Artificial Intelligence', 'Artificial intelligence (AI) is revolutionizing various industries by enabling machines to simulate human intelligence and perform tasks that traditionally required human intervention. From natural language processing and image recognition to predictive analytics and autonomous systems, AI is making significant advancements.\n\nAI has the potential to streamline processes, improve efficiency, and enhance decision-making across sectors such as healthcare, finance, manufacturing, and transportation. As AI continues to evolve, it presents both opportunities and challenges. It is crucial to explore ethical considerations, data privacy, and potential biases to ensure responsible and inclusive AI implementations.\n\nThe future of AI holds immense promise. As technologies mature', '2023-05-01 09:00:00', 1),
@@ -26,6 +26,7 @@ VALUES
     ('The Power of Data Visualization in Business Insights', 'Data visualization provides a visual representation of complex data, enabling businesses to gain meaningful insights and make informed decisions. By presenting data in graphical formats such as charts, graphs, and maps, data visualization simplifies the understanding of trends, patterns, and relationships within the data.\n\nEffective data visualization enhances communication and storytelling, allowing stakeholders to grasp the key messages behind the data quickly. Interactive dashboards and visual analytics tools empower users to explore data and uncover hidden insights.\n\nIn the era of big data, data visualization plays a crucial role in extracting actionable intelligence and driving business growth.', '2023-05-09 13:30:00', 9),
     ('Exploring Quantum Computing and Its Potential Applications', 'Quantum computing has the potential to revolutionize computing by leveraging quantum mechanics principles. Unlike classical computers that use bits, quantum computers use quantum bits or qubits, which can exist in multiple states simultaneously.\n\nQuantum computing offers immense computational power, enabling complex calculations and solving problems that are computationally infeasible for classical computers. Fields like cryptography, optimization, drug discovery, and machine learning can benefit from quantum computing.\n\nHowever, quantum computing is still in its early stages, and challenges related to qubit stability, error correction, and scalability need to be addressed before widespread adoption.', '2023-05-10 16:45:00', 10);
 
+-- insert data into the comment table
 INSERT INTO Comment (comment_content,user_id,post_id,comment_date)
 VALUES
   ('Awesome technology! I''m amazed by the advancements.', 5, 3, '2023-05-14 09:30:00'),

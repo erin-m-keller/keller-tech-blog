@@ -1,17 +1,17 @@
--- Drop the database if it exists
+-- drop the database if it exists
 DROP DATABASE IF EXISTS techblog_db;
 
--- Create the database
+-- create the database
 CREATE DATABASE techblog_db;
 
--- Use the database
+-- use the database
 USE techblog_db;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS comment;
 
--- Create the user table
+-- create the user table
 CREATE TABLE Users (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_name VARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Users (
   password VARCHAR(255) NOT NULL
 );
 
--- Create the post table
+-- create the post table
 CREATE TABLE Post (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   post_title VARCHAR(255) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE Post (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Create the comment table
+-- create the comment table
 CREATE TABLE Comment (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   comment_content TEXT NOT NULL,
