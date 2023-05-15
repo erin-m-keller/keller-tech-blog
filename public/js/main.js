@@ -1,52 +1,117 @@
-function clearPost(event) {
+const addBlog = async (event) => {
   event.preventDefault();
+  const blogTitle = document.querySelector('#blog-title').value,
+        blogContent = document.querySelector('#blog-content').value,
+        userId = document.querySelector('#blog-user-id').value;
+  if (blogTitle && blogContent && userId) {
+    const response = await fetch('/api/blog/add', {
+      method: 'POST',
+      body: JSON.stringify({ post_title: blogTitle, post_content: blogContent, user_id: userId }),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  const title = document.querySelector('#blog-title'),
-        content = document.querySelector('#blog-content');
-  title.value = '';
-  content.value = '';
-  title.focus();
-}
-
-
-function toggleTab(event) {
-  event.preventDefault();
-  
-  const clickedTab = event.target;
-  const tabId = clickedTab.dataset.tab;
-  const tabs = document.querySelectorAll(`[data-tab]`);
-  const tabContents = document.querySelectorAll(`.tab-content`);
-
-  tabs.forEach(tab => {
-    if (tab.dataset.tab === tabId) {
-      tab.classList.add('active');
+    if (response.ok) {
+      const success = await response.json();
+      if (success.message === 'Blog post added successfully.') {
+        var successMsg = document.querySelector('.success-msg');
+        successMsg.classList.remove('hidden');
+        clearBlog(event);
+        updateBlogList(blogListData);
+      }
     } else {
-      tab.classList.remove('active');
+      alert(JSON.stringify(response) + ' - Failed to add a blog post');
     }
+  } else {      
+    const titleErr = document.querySelector('.title-err'),
+          detailsErr = document.querySelector('.details-err');
+    if (!blogTitle) {
+      titleErr.classList.remove('hidden');
+    }
+    if (!blogContent) {
+      detailsErr.classList.remove('hidden');
+    }
+  }
+};
+
+const updateBlogList = (blogData) => {
+  console.log("blogData: " + JSON.stringify(blogData));
+};
+
+const updateBlog = async (event,postId) => {
+  event.preventDefault();
+  const blogTitle = document.querySelector('#updated-blog-title').value,
+        blogContent = document.querySelector('#updated-blog-content').value;
+  if (blogTitle && blogContent && postId) {
+    const response = await fetch(`/api/blog/update/${postId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ post_title: blogTitle, post_content: blogContent }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      const success = await response.json();
+      if (success.message === 'Blog post updated successfully.') {
+        var successMsg = document.querySelector('.success-msg');
+        successMsg.classList.remove('hidden');
+      }
+    } else {
+      alert(JSON.stringify(response) + ' - Failed to update post');
+    }
+  } else {      
+    const titleErr = document.querySelector('.title-err'),
+          detailsErr = document.querySelector('.details-err');
+    if (!blogTitle) {
+      titleErr.classList.remove('hidden');
+    }
+    if (!blogContent) {
+      detailsErr.classList.remove('hidden');
+    }
+  }
+};
+
+const deleteBlog = async (event,postId) => {
+  event.preventDefault();
+  const response = await fetch(`/api/blog/delete/${postId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
   });
 
-  tabContents.forEach(tabContent => {
-    if (tabContent.dataset.tab === tabId) {
-      tabContent.classList.add('active');
+  if (response.ok) {
+    document.location.replace('/dashboard');
+  } else {
+    alert(JSON.stringify(response) + ' - Failed to update blog post');
+  }
+};
+
+const addComment = async (event, postId) => {
+  event.preventDefault();
+  const commentContent = document.querySelector('#comment-content').value;
+  const userId = document.querySelector('#user-id').value;
+
+  if (commentContent && userId && postId) {
+    const response = await fetch('/api/comment/add', {
+      method: 'POST',
+      body: JSON.stringify({ comment_content: commentContent, user_id: userId, post_id: postId }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      // Fetch the updated comments for the specific post
+      const commentsResponse = await fetch(`/api/comment/getComments/${postId}`);
+      if (commentsResponse.ok) {
+        const commentsData = await commentsResponse.json();
+        // Update the comments section with the new comments
+        updateComments(commentsData, postId);
+      } else {
+        alert('Failed to fetch updated comments');
+      }
     } else {
-      tabContent.classList.remove('active');
+      alert(JSON.stringify(response) + ' - Failed to add a comment');
     }
-  });
-}
-
-function toggleComments(element,postId) {
-
-  const showBtn = element.querySelector('.show-btn'),
-        hideBtn = element.querySelector('.hide-btn'),
-        commentsWrapper = document.getElementById("comments-wrapper-" + postId);
-  
-  showBtn.classList.toggle('hidden');
-  hideBtn.classList.toggle('hidden');
-  commentsWrapper.classList.toggle('hidden');
-}
+  }
+};
 
 const updateComments = (commentsData, postId) => {
-  console.log("2 hi");
   const commentsWrapper = document.querySelector(`#comments-wrapper-${postId}`),
         commentsLength = document.querySelector(`.comments-length`),
         lengthDiv = document.createElement('div');
@@ -90,69 +155,50 @@ const updateComments = (commentsData, postId) => {
   commentsWrapper.appendChild(formElement);
 };
 
-const addComment = async (event, postId) => {
-  console.log("1 hi");
+function clearBlog(event) {
   event.preventDefault();
-  const commentContent = document.querySelector('#comment-content').value;
-  const userId = document.querySelector('#user-id').value;
 
-  if (commentContent && userId && postId) {
-    const response = await fetch('/api/comment/add', {
-      method: 'POST',
-      body: JSON.stringify({ comment_content: commentContent, user_id: userId, post_id: postId }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+  const title = document.querySelector('#blog-title'),
+        content = document.querySelector('#blog-content');
+  title.value = '';
+  content.value = '';
+  title.focus();
+}
 
-    if (response.ok) {
-      console.log(`/api/comment/getComments/${postId}`);
-      // Fetch the updated comments for the specific post
-      const commentsResponse = await fetch(`/api/comment/getComments/${postId}`);
-      if (commentsResponse.ok) {
-        const commentsData = await commentsResponse.json();
-        // Update the comments section with the new comments
-        updateComments(commentsData, postId);
-      } else {
-        alert('Failed to fetch updated comments');
-      }
-    } else {
-      alert(JSON.stringify(response) + ' - Failed to add a comment');
-    }
-  }
-};
-
-const addBlog = async (event) => {
+function toggleTab(event) {
   event.preventDefault();
-  const blogTitle = document.querySelector('#blog-title').value,
-        blogContent = document.querySelector('#blog-content').value,
-        userId = document.querySelector('#blog-user-id').value;
-  if (blogTitle && blogContent && userId) {
-    const response = await fetch('/api/blog/add', {
-      method: 'POST',
-      body: JSON.stringify({ post_title: blogTitle, post_content: blogContent, user_id: userId }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+  
+  const clickedTab = event.target;
+  const tabId = clickedTab.dataset.tab;
+  const tabs = document.querySelectorAll(`[data-tab]`);
+  const tabContents = document.querySelectorAll(`.tab-content`);
 
-    if (response.ok) {
-      const success = await response.json();
-      if (success.message === 'Post added successfully.') {
-        var successMsg = document.querySelector('.success-msg');
-        successMsg.classList.remove('hidden');
-        clearPost(event);
-      }
+  tabs.forEach(tab => {
+    if (tab.dataset.tab === tabId) {
+      tab.classList.add('active');
     } else {
-      alert(JSON.stringify(response) + ' - Failed to add a post');
+      tab.classList.remove('active');
     }
-  } else {      
-    const titleErr = document.querySelector('.title-err'),
-          detailsErr = document.querySelector('.details-err');
-    if (!blogTitle) {
-      titleErr.classList.remove('hidden');
+  });
+
+  tabContents.forEach(tabContent => {
+    if (tabContent.dataset.tab === tabId) {
+      tabContent.classList.add('active');
+    } else {
+      tabContent.classList.remove('active');
     }
-    if (!blogContent) {
-      detailsErr.classList.remove('hidden');
-    }
-  }
-};
+  });
+}
+
+function toggleComments(element,postId) {
+  const showBtn = element.querySelector('.show-btn'),
+        hideBtn = element.querySelector('.hide-btn'),
+        commentsWrapper = document.getElementById("comments-wrapper-" + postId);
+  
+  showBtn.classList.toggle('hidden');
+  hideBtn.classList.toggle('hidden');
+  commentsWrapper.classList.toggle('hidden');
+}
 
 const closeMsg = (val) => {
   const successMsg = document.querySelector('.success-msg');
@@ -167,3 +213,8 @@ const closeMsg = (val) => {
     successMsg.classList.add('hidden');
   } 
 };
+
+const showBlog = (postId) => {
+  document.location.replace(`/dashboard/${postId}`);
+};
+

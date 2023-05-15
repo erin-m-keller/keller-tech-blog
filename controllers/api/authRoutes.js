@@ -19,7 +19,7 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.get('/login', async (req, res) => {
   try {
     const userData = await Users.findOne({ where: { email: req.body.email } });
     if (!userData) {
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();

@@ -9,5 +9,8 @@ module.exports = {
     },
     formatDate: function(date) {
         return moment(date).format('MMMM Do YYYY, h:mm a');
+    },
+    toJson: function (obj) {
+        return JSON.stringify(obj, null, 3);
     }
 };

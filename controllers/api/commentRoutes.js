@@ -2,7 +2,6 @@ const router = require('express').Router(),
       { Users, Comment } = require('../../models');
 
 router.post('/add', async (req, res) => {
-  console.log("req: " + req);
   try {
     const newComment = await Comment.create({
         comment_content: req.body.comment_content,
@@ -19,7 +18,6 @@ router.post('/add', async (req, res) => {
 router.get('/getComments/:postId', async (req, res) => {
   try {
     const { postId } = req.params;
-    console.log("postId: " + postId);
 
     const commentsData = await Comment.findAll({
       where: { post_id: postId },
