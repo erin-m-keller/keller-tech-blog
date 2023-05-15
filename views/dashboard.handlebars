@@ -83,6 +83,9 @@
         <div class="ui card" style="padding:1em">
         <h2>Blogs you have created:</h2>
         <div class="ui feed" id="blog-feed">
+          {{#unless users}}
+          <p>Start writing!</p>
+          {{/unless}}
           {{#each users}}
             {{#each Posts}}
                 <div class="event">
