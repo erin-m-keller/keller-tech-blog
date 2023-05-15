@@ -116,10 +116,10 @@ router.get('/dashboard/:postId', withAuth, async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
     // transform user data into javascript object
-    const posts = postData.get({ plain: true });
+    const users = postData.get({ plain: true });
     // render dashboard.handlebars
     res.render('dashboard', {
-      posts, // blog data
+      users, // blog data
       logged_in: req.session.logged_in, // logged in session
       logged_in_id: req.session.logged_in_id, // logged in session id
       url: req.url, // current url path
@@ -168,10 +168,10 @@ router.get('/posts/:id', async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
     // transform user data into javascript object
-    const posts = postData.get({ plain: true });
+    const post = postData.get({ plain: true });
     // render post.handlebars
     res.render('post', {
-      posts, // blog data
+      post, // blog data
       logged_in: req.session.logged_in, // logged in session
       logged_in_id: req.session.logged_in_id, // logged in session id
       url: req.url // current url path
