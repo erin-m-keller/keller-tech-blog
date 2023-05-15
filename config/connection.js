@@ -1,11 +1,14 @@
-const Sequelize = require('sequelize');
+// initialize variables
 require('dotenv').config();
-
+const Sequelize = require('sequelize');
 let sequelize;
 
+// connect to jaws db
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
-} else {
+} 
+// connect to localhost
+else {
   sequelize = new Sequelize({
     database: process.env.DB_NAME,
     username: process.env.DB_USER,
@@ -16,4 +19,5 @@ if (process.env.JAWSDB_URL) {
   });
 }
 
+// exports the connection
 module.exports = sequelize;

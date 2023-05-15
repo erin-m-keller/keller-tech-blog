@@ -12,7 +12,7 @@ const path = require('path'),
       sess = {
         secret: process.env.SECRET,
         cookie: {
-          maxAge: 300000, // Session expiration time in milliseconds (5 minutes)
+          maxAge: 1800000, // Session expiration time in milliseconds (30 minutes)
         },
         resave: false,
         saveUninitialized: true,

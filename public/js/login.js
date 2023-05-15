@@ -1,6 +1,7 @@
 const closeErr = (val) => {
   var emailErr = document.querySelector('.email-err'),
       pwdErr = document.querySelector('.password-err'),
+      userErr = document.querySelector('.username-err'),
       invalidEmailErr = document.querySelector('.invalid-email-err'),
       pwdLengthErr = document.querySelector('.password-length-err');
   if (val === 'email') {
@@ -11,26 +12,28 @@ const closeErr = (val) => {
     pwdLengthErr.classList.add('hidden');
   } else if (val === 'invalid-email') {
     invalidEmailErr.classList.add('hidden');
+  } else if (val === 'username') {
+    userErr.classList.add('hidden');
   }
 };
 
 const loginFormHandler = async (event) => {
   event.preventDefault();
-  const email = document.querySelector('#email').value.trim(),
+  const username = document.querySelector('#username').value.trim(),
         password = document.querySelector('#password').value.trim();
-  if (email && password) {
+  if (username && password) {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      document.location.replace('/');
+      window.location.href = "/";
     } else {
       const responseData = await response.json();
-      if (responseData.error === 'Email is not registered. Please sign up.') {
-        var emailErr = document.querySelector('.email-err');
-        emailErr.classList.remove('hidden');
+      if (responseData.error === 'Username is not registered. Please sign up.') {
+        var userErr = document.querySelector('.username-err');
+        userErr.classList.remove('hidden');
       } else if (responseData.error === 'Incorrect password.') {
         var pwdErr = document.querySelector('.password-err');
         pwdErr.classList.remove('hidden');
@@ -51,7 +54,7 @@ const signupFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      document.location.replace('/');
+      window.location.replace('/');
     } else {
       const err = await response.json(),
             errMsg = err.errors[0].message;
