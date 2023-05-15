@@ -16,7 +16,7 @@ const addBlog = async (event) => {
         var successMsg = document.querySelector('.success-msg');
         successMsg.classList.remove('hidden');
         clearBlog(event);
-        updateBlogList(blogListData);
+        updateBlogList();
       }
     } else {
       alert(JSON.stringify(response) + ' - Failed to add a blog post');
@@ -33,8 +33,40 @@ const addBlog = async (event) => {
   }
 };
 
-const updateBlogList = (blogData) => {
-  console.log("blogData: " + JSON.stringify(blogData));
+const updateBlogList = async () => {
+  const response = await fetch(`/api/blog/list/`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    const success = await response.json();
+    const blogFeed = document.getElementById('blog-feed');
+    const formattedDate = moment(success.post_date).format('MMMM Do YYYY, h:mm a');
+
+    blogFeed.innerHTML = '';
+
+    success.data.forEach((user) => {
+      user.Posts.forEach((post) => {
+        const postElement = document.createElement('div');
+        postElement.classList.add('event');
+        postElement.innerHTML = `
+          <div class="label">
+            <i class="pencil icon"></i>
+          </div>
+          <div class="content">
+            <div class="summary">
+              You posted <a href="javascript:void(0)" onclick="showBlog('${post.id}')">${post.post_title}</a>
+              <div class="date">${formattedDate}</div>
+            </div>
+          </div>
+        `;
+        blogFeed.appendChild(postElement);
+      });
+    });
+  } else {
+    alert(JSON.stringify(response) + ' - Failed to update blog list');
+  }
 };
 
 const updateBlog = async (event,postId) => {

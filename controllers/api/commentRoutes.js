@@ -15,12 +15,12 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.get('/getComments/:postId', async (req, res) => {
+router.get('/getComments/:blogId', async (req, res) => {
   try {
-    const { postId } = req.params;
+    const { blogId } = req.params;
 
     const commentsData = await Comment.findAll({
-      where: { post_id: postId },
+      where: { post_id: blogId },
       include: [{ model: Users, attributes: ['user_name'] }],
     });
     

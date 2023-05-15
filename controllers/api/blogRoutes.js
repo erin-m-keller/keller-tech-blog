@@ -1,12 +1,39 @@
 const router = require('express').Router(),
-      { Post } = require('../../models');
+      { Users, Post } = require('../../models');
 
 router.get('/posts', async (req, res) => {
   try {
     const posts = await Post.findAll();
     res.json({ posts });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to retrieve posts.' });
+    res.status(500).json({ error: 'Failed to retrieve blog posts.' });
+  }
+});
+
+router.get('/list', async (req, res) => {
+  console.log("req.session.logged_in_id: " + req.session.logged_in_id);
+  try {
+    const userData = await Users.findAll({
+      attributes: { exclude: ['password'] },
+      order: [['user_name', 'ASC']],
+      include: [
+        {
+          model: Post,
+          include: [
+            {
+              model: Users,
+              attributes: ['user_name', 'email'],
+            }
+          ],
+          where: { user_id: req.session.logged_in_id }
+        },
+      ],
+    });
+
+    const users = userData.map((project) => project.get({ plain: true }));
+    res.status(200).json({ data: users });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

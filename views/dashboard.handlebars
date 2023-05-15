@@ -82,23 +82,22 @@
       <div class="column">
         <div class="ui card" style="padding:1em">
         <h2>Blogs you have created:</h2>
-        {{#each users}}
-          {{#each Posts}}
-            <div class="ui feed">
-              <div class="event">
-                <div class="label">
-                  <i class="pencil icon"></i>
-                </div>
-                <div class="content">
-                  <div class="summary">
-                    You posted <a href="javascript:void(0)" onclick="showBlog('{{id}}')">{{post_title}}</a>
-                    <div class="date">{{formatDate updated_date}}</div>
+        <div class="ui feed" id="blog-feed">
+          {{#each users}}
+            {{#each Posts}}
+                <div class="event">
+                  <div class="label">
+                    <i class="pencil icon"></i>
+                  </div>
+                  <div class="content">
+                    <div class="summary">
+                      You posted <a href="javascript:void(0)" onclick="showBlog('{{id}}')">{{post_title}}</a>
+                      <div class="date">{{formatDate post_date}}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+            {{/each}}
           {{/each}}
-        {{/each}}
         </div>
       </div>
     </div>
