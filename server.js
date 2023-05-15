@@ -10,8 +10,10 @@ const path = require('path'),
       PORT = process.env.PORT || 3001,
       hbs = exphbs.create({ helpers }),
       sess = {
-        secret: 'Super secret secret',
-        cookie: {},
+        secret: process.env.SECRET,
+        cookie: {
+          maxAge: 300000, // Session expiration time in milliseconds (5 minutes)
+        },
         resave: false,
         saveUninitialized: true,
         store: new SequelizeStore({

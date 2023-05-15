@@ -40,15 +40,15 @@ const updateBlogList = async () => {
   });
 
   if (response.ok) {
-    const success = await response.json();
-    const blogFeed = document.getElementById('blog-feed');
-    const formattedDate = moment(success.post_date).format('MMMM Do YYYY, h:mm a');
+    const success = await response.json(),
+          blogFeed = document.getElementById('blog-feed');
 
     blogFeed.innerHTML = '';
 
     success.data.forEach((user) => {
       user.Posts.forEach((post) => {
-        const postElement = document.createElement('div');
+        const formattedDate = moment(post.post_date).format('MMMM Do YYYY, h:mm a'),
+              postElement = document.createElement('div');
         postElement.classList.add('event');
         postElement.innerHTML = `
           <div class="label">
