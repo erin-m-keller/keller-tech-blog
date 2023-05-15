@@ -1,8 +1,11 @@
+// initialize variables
 const { Model, DataTypes } = require('sequelize'),
       sequelize = require('../config/connection');
 
+// post model definition
 class Post extends Model {}
 
+// initialize the model with attributes and options
 Post.init(
   {
     id: {

@@ -1,13 +1,18 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+// initialize variables
+const { Model, DataTypes } = require('sequelize'),
+      bcrypt = require('bcrypt'),
+      sequelize = require('../config/connection');
 
+// users model definition
 class Users extends Model {
+  // validate the password
   checkPassword(loginPw) {
+    // use bcrypt to compare the login password with the saved hashed password
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
 
+// initialize the model with attributes and options
 Users.init(
   {
     id: {
