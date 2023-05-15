@@ -25,8 +25,8 @@ router.post('/create', async (req, res) => {
   }
   // catch and handle the error 
   catch (err) {
-    // return status 400 and error message
-    res.status(400).json(err);
+    // return status 500 and error message
+    res.status(500).json(err);
   }
 });
 
@@ -73,8 +73,8 @@ router.post('/login', async (req, res) => {
   } 
   // catch and handle the error
   catch (err) {
-    // return status 400 and error message
-    res.status(400).json({ error: 'An error occurred while processing your request.', msg: err });
+    // return status 500 and error message
+    res.status(500).json(err);
   }
 });
 
