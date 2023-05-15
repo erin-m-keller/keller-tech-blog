@@ -7,6 +7,7 @@ const router = require('express').Router(),
  * creates a new user on sign up
  */
 router.post('/create', async (req, res) => {
+  // check if code throws an error
   try {
     // create a new user
     const newUser = await Users.create({
@@ -21,7 +22,9 @@ router.post('/create', async (req, res) => {
       req.session.logged_in = true; // logged in true
       res.json({ user: userData, message: 'Successful login.' }); // return user data and success message
     });
-  } catch (err) {
+  }
+  // catch and handle the error 
+  catch (err) {
     // return status 400 and error message
     res.status(400).json(err);
   }
