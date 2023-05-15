@@ -126,6 +126,8 @@
     DB_NAME='your_database_name_here'
     DB_USER='your_username_here'
     DB_PW='your_password_here'
+    JAWSDB_URL='jawsdb_url_here'
+    SECRET='session_secret_here'
   ```
   * Start the application
    ``` bash
@@ -138,6 +140,8 @@
   ![FinishedProduct1](./public/images/finished-product-1.png)
   ![FinishedProduct2](./public/images/finished-product-2.png)
   ![FinishedProduct3](./public/images/finished-product-3.png)
+  ![FinishedProduct4](./public/images/finished-product-4.png)
+  ![FinishedProduct5](./public/images/finished-product-5.png)
   
   ## Deployed page
 
